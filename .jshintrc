@@ -1,0 +1,6 @@
+{
+  "camelcase": false,
+  "node": true,
+  "esnext" : true,
+  "predef": []
+}

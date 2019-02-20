@@ -1,0 +1,13 @@
+{
+  "checkbuild": {
+    "enable": ["jshint", "jscs"],
+    "continueOnError": true,
+    "allowFailures": false
+  },
+  "jshint": {
+    "args": ["lib/**/*.js"]
+  },
+  "jscs": {
+    "args": ["lib/**/*.js"]
+  }
+}
