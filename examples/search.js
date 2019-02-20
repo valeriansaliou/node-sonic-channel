@@ -19,15 +19,19 @@ var sonicChannelSearch = new SonicChannelSearch({
   connected : function() {
     // Success handler
     console.info("Sonic Channel succeeded to connect to socket (search).");
-    console.info("Running flow...");
+    console.info("Running example...");
 
     setTimeout(function() {
       // Test query
       var query = sonicChannelSearch.query(
         "messages", "default", "valerian saliou",
 
-        function(result) {
-          console.debug("Result: query", result);
+        function(data, error) {
+          if (error) {
+            console.error("Query #1 failed", error);
+          } else {
+            console.info("Query #1 succeeded", data);
+          }
         },
 
         {
@@ -42,18 +46,38 @@ var sonicChannelSearch = new SonicChannelSearch({
 
       setTimeout(function() {
         // Test close (#1)
-        var close1 = sonicChannelSearch.close();
+        var close1 = sonicChannelSearch.close(function(data, error) {
+          if (error) {
+            console.error("Close #1 failed", error);
+          } else {
+            console.info("Close #1 succeeded", data);
+          }
+        });
 
         console.info("Sent: close#1", close1);
 
         // Test close (#2)
-        var close2 = sonicChannelSearch.close();
+        var close2 = sonicChannelSearch.close(function(data, error) {
+          if (error) {
+            console.error("Close #2 failed", error);
+          } else {
+            console.info("Close #2 succeeded", data);
+          }
+        });
 
         console.info("Sent: close#2", close2);
 
         // Test query (after close)
         var queryAfterClose = sonicChannelSearch.query(
-          "messages", "default", "hello"
+          "messages", "default", "hello",
+
+          function(data, error) {
+            if (error) {
+              console.error("Query #2 failed", error);
+            } else {
+              console.info("Query #2 succeeded", data);
+            }
+          }
         );
 
         console.info("Sent: queryAfterClose", queryAfterClose);
@@ -66,7 +90,7 @@ var sonicChannelSearch = new SonicChannelSearch({
   disconnected : function() {
     // Disconnected handler
     console.error("Sonic Channel is now disconnected (search).");
-    console.info("Done running flow.");
+    console.info("Done running example.");
 
     process.exit(0);
   },
