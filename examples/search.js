@@ -81,8 +81,6 @@ var sonicChannelSearch = new SonicChannelSearch({
         );
 
         console.info("Sent: queryAfterClose", queryAfterClose);
-
-        console.info("Hold on...");
       }, 4000);
     }, 500);
   },
