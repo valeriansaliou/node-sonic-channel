@@ -15,8 +15,8 @@ var SonicChannelSearch = require("../").Search;
 var sonicChannelSearch = new SonicChannelSearch({
   host : "::1",
   port : 1491
-}).connect(
-  function() {
+}).connect({
+  connected : function() {
     // Success handler
     console.info("Sonic Channel succeeded to connect to socket (search).");
     console.info("Running flow...");
@@ -59,42 +59,32 @@ var sonicChannelSearch = new SonicChannelSearch({
         console.info("Sent: queryAfterClose", queryAfterClose);
 
         console.info("Hold on...");
-
-        setTimeout(function() {
-          console.info("Reconnecting...");
-
-          // Reconnect
-          sonicChannelSearch.connect(
-            function() {
-              console.info("Reconnected.");
-
-              console.info("Hold on...");
-
-              setTimeout(function() {
-                console.info("Disconnecting...");
-
-                sonicChannelSearch.close(function() {
-                  console.info("Disconnected...");
-                  console.info("Done running flow.");
-
-                  process.exit(0);
-                });
-              }, 1000);
-            },
-
-            function(error_reco) {
-              console.error("Failed reconnecting.", error_reco);
-            }
-          );
-        }, 1000);
       }, 4000);
     }, 500);
   },
 
-  function(error) {
+  disconnected : function() {
+    // Disconnected handler
+    console.error("Sonic Channel is now disconnected (search).");
+    console.info("Done running flow.");
+
+    process.exit(0);
+  },
+
+  timeout : function() {
+    // Timeout handler
+    console.error("Sonic Channel connection timed out (search).");
+  },
+
+  retrying : function() {
+    // Retry handler
+    console.error("Trying to reconnect to Sonic Channel (search)...");
+  },
+
+  error : function(error) {
     // Failure handler
     console.error("Sonic Channel failed to connect to socket (search).", error);
   }
-);
+});
 
 process.stdin.resume();
