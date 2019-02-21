@@ -84,7 +84,19 @@ describe("node-sonic-channel", function() {
     );
   });
 
-  // TODO: test command methods + handlers
+  describe("query method", function() {
+    it("should defer query when offline", function() {
+      var sonicChannelSearch = new SonicChannelSearch({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelSearch.query("messages", "default", "valerian saliou")),
+        "Query should be deferred"
+      );
+    });
+  });
 
   describe("close method", function() {
     it("should not close twice already closed channel", function() {

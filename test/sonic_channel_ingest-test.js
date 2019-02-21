@@ -84,7 +84,89 @@ describe("node-sonic-channel", function() {
     );
   });
 
-  // TODO: test command methods + handlers
+  describe("push method", function() {
+    it("should defer push when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.push("messages", "default", "a6b1z", "valerian")),
+        "Push should be deferred"
+      );
+    });
+  });
+
+  describe("pop method", function() {
+    it("should defer pop when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.pop("messages", "default", "a6b1z")),
+        "Pop should be deferred"
+      );
+    });
+  });
+
+  describe("count method", function() {
+    it("should defer count when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.count("messages", "default", "a6b1z")),
+        "Count should be deferred"
+      );
+    });
+  });
+
+  describe("flushc method", function() {
+    it("should defer flushc when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.flushc("messages")),
+        "Flushc should be deferred"
+      );
+    });
+  });
+
+  describe("flushb method", function() {
+    it("should defer flushb when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.flushb("messages", "default")),
+        "Flushb should be deferred"
+      );
+    });
+  });
+
+  describe("flusho method", function() {
+    it("should defer flusho when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.flusho("messages", "default", "a6b1z")),
+        "Flusho should be deferred"
+      );
+    });
+  });
 
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
