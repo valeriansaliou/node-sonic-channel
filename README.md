@@ -106,6 +106,47 @@ sonicChannelSearch.close(function(data, error) {
 });
 ```
 
+### Ingest channel
+
+#### 1. Create the connection
+
+`node-sonic-channel` can be instanciated in ingest mode as such:
+
+```javascript
+var SonicChannelIngest = require("sonic-channel").Ingest;
+
+var sonicChannelIngest = new SonicChannelIngest({
+  host : "::1",  // Or '127.0.0.1' if you are still using IPv4
+  port : 1491    // Default port is '1491'
+}).connect({
+  // Handlers are the same as in search mode
+});
+```
+
+#### 2. Manage the search index
+
+_You may use the same `sonicChannelIngest` instance to manage your search index (similarly to the search mode)._
+
+#### 3. Teardown connection
+
+_Tearing down an ingest channel connection is done the same way as a search connection._
+
+## List of channel methods
+
+### Search channel
+
+* `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, done_cb<function>, [options{limit<number>, offset<number>}<object>]?)` ➡️ `done_cb(results, error)`
+* `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, sentence_text<string>, done_cb<function>)` ➡️ `done_cb(results<object>, error<object>)`
+
+### Ingest channel
+
+* `sonicChannelIngest.push(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>)` ➡️ `done_cb(_, error<object>)`
+* `sonicChannelIngest.pop(collection_id<string>, bucket_id<string>, object_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.count<number>(collection_id<string>, [bucket_id<string>]?, [object_id<string>]?, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.flushc(collection_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.flushb(collection_id<string>, bucket_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.flusho(collection_id<string>, bucket_id<string>, object_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+
 ## What is Sonic?
 
 ℹ️ **Wondering what Sonic is?** Check out **[valeriansaliou/sonic](https://github.com/valeriansaliou/sonic)**.
