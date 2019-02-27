@@ -14,7 +14,8 @@ var SonicChannelSearch = require("../").Search;
 
 var sonicChannelSearch = new SonicChannelSearch({
   host : "::1",
-  port : 1491
+  port : 1491,
+  auth : "SecretPassword"
 }).connect({
   connected : function() {
     // Success handler

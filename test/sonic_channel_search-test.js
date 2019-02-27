@@ -22,6 +22,7 @@ describe("node-sonic-channel", function() {
           new SonicChannelSearch({
             host                : "::1",
             port                : 1491,
+            auth                : "SecretPassword",
             offlineStackMaxSize : 0
           });
         },
@@ -64,6 +65,20 @@ describe("node-sonic-channel", function() {
         },
 
         "SonicChannelSearch should throw on invalid port"
+      );
+    });
+
+    it("should fail creating an instance with invalid auth", function() {
+      assert.throws(
+        function() {
+          new SonicChannelSearch({
+            host : "::1",
+            port : 1491,
+            auth : false
+          });
+        },
+
+        "SonicChannelSearch should throw on invalid auth"
       );
     });
 

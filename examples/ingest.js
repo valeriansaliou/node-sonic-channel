@@ -14,7 +14,8 @@ var SonicChannelIngest = require("../").Ingest;
 
 var sonicChannelIngest = new SonicChannelIngest({
   host : "::1",
-  port : 1491
+  port : 1491,
+  auth : "SecretPassword"
 }).connect({
   connected : function() {
     // Success handler
