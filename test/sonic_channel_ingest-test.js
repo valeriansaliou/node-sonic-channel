@@ -121,7 +121,7 @@ describe("node-sonic-channel", function() {
       });
 
       assert.ok(
-        !(sonicChannelIngest.pop("messages", "default", "a6b1z")),
+        !(sonicChannelIngest.pop("messages", "default", "a6b1z", "valerian")),
         "Pop should be deferred"
       );
     });
