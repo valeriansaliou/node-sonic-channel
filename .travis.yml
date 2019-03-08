@@ -1,8 +1,10 @@
 language: node_js
 node_js:
-  - '6.9'
+  - '6.12'
   - '8.15'
   - '10.15'
+  - node
+cache: npm
 before_script:
   - node -v
 script:
