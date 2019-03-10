@@ -138,6 +138,7 @@ _Tearing down an ingest channel connection is done the same way as a search conn
 ### Search channel
 
 * `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, done_cb<function>, [options{limit<number>, offset<number>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
+* `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, word_text<string>, done_cb<function>)` ➡️ `done_cb(results<object>, error<object>)`
 
 ### Ingest channel
 

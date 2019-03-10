@@ -43,6 +43,21 @@ var sonicChannelSearch = new SonicChannelSearch({
 
       console.info("Sent: query", query);
 
+      // Test suggest
+      var suggest = sonicChannelSearch.suggest(
+        "messages", "default", "valerian",
+
+        function(data, error) {
+          if (error) {
+            console.error("Suggest #1 failed", error);
+          } else {
+            console.info("Suggest #1 succeeded", data);
+          }
+        }
+      );
+
+      console.info("Sent: suggest", suggest);
+
       console.info("Hold on...");
 
       setTimeout(function() {

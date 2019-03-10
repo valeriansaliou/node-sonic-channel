@@ -113,6 +113,20 @@ describe("node-sonic-channel", function() {
     });
   });
 
+  describe("suggest method", function() {
+    it("should defer suggest when offline", function() {
+      var sonicChannelSearch = new SonicChannelSearch({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelSearch.suggest("messages", "default", "valerian")),
+        "Suggest should be deferred"
+      );
+    });
+  });
+
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
       var sonicChannelSearch = new SonicChannelSearch({
