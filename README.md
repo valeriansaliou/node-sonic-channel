@@ -148,6 +148,7 @@ _Tearing down an ingest channel connection is done the same way as a search conn
 * `sonicChannelIngest.flushc(collection_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.flushb(collection_id<string>, bucket_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.flusho(collection_id<string>, bucket_id<string>, object_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.trigger(action<string>)` ➡️ `done_cb(_, error<object>)`
 
 ## What is Sonic?
 

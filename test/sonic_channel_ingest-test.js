@@ -183,6 +183,20 @@ describe("node-sonic-channel", function() {
     });
   });
 
+  describe("trigger method", function() {
+    it("should defer trigger when offline", function() {
+      var sonicChannelIngest = new SonicChannelIngest({
+        host : "::1",
+        port : 1491
+      });
+
+      assert.ok(
+        !(sonicChannelIngest.trigger("consolidate")),
+        "Trigger should be deferred"
+      );
+    });
+  });
+
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
       var sonicChannelIngest = new SonicChannelIngest({
