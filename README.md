@@ -40,7 +40,7 @@ var SonicChannelSearch = require("sonic-channel").Search;
 
 var sonicChannelSearch = new SonicChannelSearch({
   host : "::1",            // Or '127.0.0.1' if you are still using IPv4
-  port : 1491              // Default port is '1491'
+  port : 1491,             // Default port is '1491'
   auth : "SecretPassword"  // Authentication password (if any)
 }).connect({
   connected : function() {
