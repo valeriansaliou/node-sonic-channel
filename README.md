@@ -118,7 +118,7 @@ var SonicChannelIngest = require("sonic-channel").Ingest;
 
 var sonicChannelIngest = new SonicChannelIngest({
   host : "::1",            // Or '127.0.0.1' if you are still using IPv4
-  port : 1491              // Default port is '1491'
+  port : 1491,             // Default port is '1491'
   auth : "SecretPassword"  // Authentication password (if any)
 }).connect({
   // Handlers are the same as in search mode
