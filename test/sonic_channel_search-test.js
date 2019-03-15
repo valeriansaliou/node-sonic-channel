@@ -23,8 +23,7 @@ describe("node-sonic-channel", function() {
             host                : "::1",
             port                : 1491,
             auth                : "SecretPassword",
-            offlineStackMaxSize : 0,
-            textMaximumLength   : 1000
+            offlineStackMaxSize : 0
           });
         },
 
@@ -95,22 +94,6 @@ describe("node-sonic-channel", function() {
           },
 
           "SonicChannelSearch should throw on invalid offlineStackMaxSize"
-        );
-      }
-    );
-
-    it("should fail creating an instance with invalid textMaximumLength",
-      function() {
-        assert.throws(
-          function() {
-            new SonicChannelSearch({
-              host              : "::1",
-              port              : 1491,
-              textMaximumLength : "20"
-            });
-          },
-
-          "SonicChannelSearch should throw on invalid textMaximumLength"
         );
       }
     );
