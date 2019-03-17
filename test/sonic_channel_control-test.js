@@ -9,17 +9,17 @@
 "use strict";
 
 
-var SonicChannelSearch = require("../").Search;
+var SonicChannelControl = require("../").Control;
 
 var assert = require("assert");
 
 
-describe("node-sonic-channel/search", function() {
+describe("node-sonic-channel/control", function() {
   describe("constructor", function() {
     it("should succeed creating an instance with valid options", function() {
       assert.doesNotThrow(
         function() {
-          new SonicChannelSearch({
+          new SonicChannelControl({
             host                : "::1",
             port                : 1491,
             auth                : "SecretPassword",
@@ -27,58 +27,58 @@ describe("node-sonic-channel/search", function() {
           });
         },
 
-        "SonicChannelSearch should not throw on valid options"
+        "SonicChannelControl should not throw on valid options"
       );
     });
 
     it("should fail creating an instance with missing host", function() {
       assert.throws(
         function() {
-          new SonicChannelSearch({
+          new SonicChannelControl({
             port : 1491
           });
         },
 
-        "SonicChannelSearch should throw on missing host"
+        "SonicChannelControl should throw on missing host"
       );
     });
 
     it("should fail creating an instance with missing port", function() {
       assert.throws(
         function() {
-          new SonicChannelSearch({
+          new SonicChannelControl({
             host : "::1"
           });
         },
 
-        "SonicChannelSearch should throw on missing port"
+        "SonicChannelControl should throw on missing port"
       );
     });
 
     it("should fail creating an instance with invalid port", function() {
       assert.throws(
         function() {
-          new SonicChannelSearch({
+          new SonicChannelControl({
             host : "::1",
             port : -40
           });
         },
 
-        "SonicChannelSearch should throw on invalid port"
+        "SonicChannelControl should throw on invalid port"
       );
     });
 
     it("should fail creating an instance with invalid auth", function() {
       assert.throws(
         function() {
-          new SonicChannelSearch({
+          new SonicChannelControl({
             host : "::1",
             port : 1491,
             auth : false
           });
         },
 
-        "SonicChannelSearch should throw on invalid auth"
+        "SonicChannelControl should throw on invalid auth"
       );
     });
 
@@ -86,56 +86,42 @@ describe("node-sonic-channel/search", function() {
       function() {
         assert.throws(
           function() {
-            new SonicChannelSearch({
+            new SonicChannelControl({
               host                : "::1",
               port                : 1491,
               offlineStackMaxSize : "20"
             });
           },
 
-          "SonicChannelSearch should throw on invalid offlineStackMaxSize"
+          "SonicChannelControl should throw on invalid offlineStackMaxSize"
         );
       }
     );
   });
 
-  describe("query method", function() {
-    it("should defer query when offline", function() {
-      var sonicChannelSearch = new SonicChannelSearch({
+  describe("trigger method", function() {
+    it("should defer trigger when offline", function() {
+      var sonicChannelControl = new SonicChannelControl({
         host : "::1",
         port : 1491
       });
 
       assert.ok(
-        !(sonicChannelSearch.query("messages", "default", "valerian saliou")),
-        "Query should be deferred"
-      );
-    });
-  });
-
-  describe("suggest method", function() {
-    it("should defer suggest when offline", function() {
-      var sonicChannelSearch = new SonicChannelSearch({
-        host : "::1",
-        port : 1491
-      });
-
-      assert.ok(
-        !(sonicChannelSearch.suggest("messages", "default", "valerian")),
-        "Suggest should be deferred"
+        !(sonicChannelControl.trigger("consolidate")),
+        "Trigger should be deferred"
       );
     });
   });
 
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
-      var sonicChannelSearch = new SonicChannelSearch({
+      var sonicChannelControl = new SonicChannelControl({
         host : "::1",
         port : 1491
       });
 
       assert.ok(
-        !(sonicChannelSearch.close()), "Channel close should not be executed"
+        !(sonicChannelControl.close()), "Channel close should not be executed"
       );
     });
   });

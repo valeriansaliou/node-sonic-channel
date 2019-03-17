@@ -14,7 +14,7 @@ var SonicChannelIngest = require("../").Ingest;
 var assert = require("assert");
 
 
-describe("node-sonic-channel", function() {
+describe("node-sonic-channel/ingest", function() {
   describe("constructor", function() {
     it("should succeed creating an instance with valid options", function() {
       assert.doesNotThrow(
@@ -179,20 +179,6 @@ describe("node-sonic-channel", function() {
       assert.ok(
         !(sonicChannelIngest.flusho("messages", "default", "a6b1z")),
         "Flusho should be deferred"
-      );
-    });
-  });
-
-  describe("trigger method", function() {
-    it("should defer trigger when offline", function() {
-      var sonicChannelIngest = new SonicChannelIngest({
-        host : "::1",
-        port : 1491
-      });
-
-      assert.ok(
-        !(sonicChannelIngest.trigger("consolidate")),
-        "Trigger should be deferred"
       );
     });
   });

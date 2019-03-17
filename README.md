@@ -133,6 +133,32 @@ _You may use the same `sonicChannelIngest` instance to manage your search index 
 
 _Tearing down an ingest channel connection is done the same way as a search connection._
 
+### Control channel
+
+#### 1. Create the connection
+
+`node-sonic-channel` can be instanciated in control mode as such:
+
+```javascript
+var SonicChannelControl = require("sonic-channel").Control;
+
+var sonicChannelControl = new SonicChannelControl({
+  host : "::1",            // Or '127.0.0.1' if you are still using IPv4
+  port : 1491,             // Default port is '1491'
+  auth : "SecretPassword"  // Authentication password (if any)
+}).connect({
+  // Handlers are the same as in search or ingest mode
+});
+```
+
+#### 2. Administrate your Sonic server
+
+_You may use the same `sonicChannelControl` instance to administrate your Sonic server._
+
+#### 3. Teardown connection
+
+_Tearing down an control channel connection is done the same way as a search or ingest connection._
+
 ## List of channel methods
 
 ### Search channel
@@ -148,7 +174,10 @@ _Tearing down an ingest channel connection is done the same way as a search conn
 * `sonicChannelIngest.flushc(collection_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.flushb(collection_id<string>, bucket_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.flusho(collection_id<string>, bucket_id<string>, object_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
-* `sonicChannelIngest.trigger(action<string>)` ➡️ `done_cb(_, error<object>)`
+
+### Control channel
+
+* `sonicChannelControl.trigger(action<string>)` ➡️ `done_cb(_, error<object>)`
 
 ## What is Sonic?
 
