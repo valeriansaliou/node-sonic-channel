@@ -77,26 +77,13 @@ Use the same `sonicChannelSearch` instance to query the search index:
 ```javascript
 // Notice: all methods return 'true' if executed immediately, 'false' if deferred (ie. TCP socket disconnected)
 
-// Purge cache for a given bucket (all authenticated users)
 sonicChannelSearch.query("messages", "default", "valerian saliou", function(data, error) {
   // Query results come in the 'data' argument
   // Query errors come in the 'error' argument
 });
 ```
 
-#### 3. Test connection
-
-You can test your connection to Sonic anytime by sending a ping:
-
-```javascript
-sonicChannelSearch.ping(function(data, error) {
-  // Handle ping errors here
-});
-```
-
-**Notice: pings are automatically sent to maintain the connection. You do not need to send periodic pings from your code.**
-
-#### 4. Teardown connection
+#### 3. Teardown connection
 
 If you need to teardown an ongoing connection to Sonic, use:
 
@@ -121,17 +108,55 @@ var sonicChannelIngest = new SonicChannelIngest({
   port : 1491,             // Default port is '1491'
   auth : "SecretPassword"  // Authentication password (if any)
 }).connect({
-  // Handlers are the same as in search mode
+  connected : function() {
+    // Connected handler
+    console.info("Sonic Channel succeeded to connect to host (ingest).");
+  },
+
+  disconnected : function() {
+    // Disconnected handler
+    console.error("Sonic Channel is now disconnected (ingest).");
+  },
+
+  timeout : function() {
+    // Timeout handler
+    console.error("Sonic Channel connection timed out (ingest).");
+  },
+
+  retrying : function() {
+    // Retry handler
+    console.error("Trying to reconnect to Sonic Channel (ingest)...");
+  },
+
+  error : function(error) {
+    // Failure handler
+    console.error("Sonic Channel failed to connect to host (ingest).", error);
+  }
 });
 ```
 
 #### 2. Manage the search index
 
-_You may use the same `sonicChannelIngest` instance to manage your search index (similarly to the search mode)._
+Use the same `sonicChannelIngest` instance to push text to the search index:
+
+```javascript
+// Notice: all methods return 'true' if executed immediately, 'false' if deferred (ie. TCP socket disconnected)
+
+sonicChannelIngest.push("messages", "default", "I met Valerian Saliou yesterday. Great fun!", function(_, error) {
+  // Push errors come in the 'error' argument
+});
+```
 
 #### 3. Teardown connection
 
-_Tearing down an ingest channel connection is done the same way as a search connection._
+If you need to teardown an ongoing connection to Sonic, use:
+
+```javascript
+// Returns: true if proceeding close, false if already closed
+sonicChannelIngest.close(function(data, error) {
+  // Handle close errors here
+});
+```
 
 ### Control channel
 
@@ -147,7 +172,30 @@ var sonicChannelControl = new SonicChannelControl({
   port : 1491,             // Default port is '1491'
   auth : "SecretPassword"  // Authentication password (if any)
 }).connect({
-  // Handlers are the same as in search or ingest mode
+  connected : function() {
+    // Connected handler
+    console.info("Sonic Channel succeeded to connect to host (control).");
+  },
+
+  disconnected : function() {
+    // Disconnected handler
+    console.error("Sonic Channel is now disconnected (control).");
+  },
+
+  timeout : function() {
+    // Timeout handler
+    console.error("Sonic Channel connection timed out (control).");
+  },
+
+  retrying : function() {
+    // Retry handler
+    console.error("Trying to reconnect to Sonic Channel (control)...");
+  },
+
+  error : function(error) {
+    // Failure handler
+    console.error("Sonic Channel failed to connect to host (control).", error);
+  }
 });
 ```
 
@@ -157,7 +205,14 @@ _You may use the same `sonicChannelControl` instance to administrate your Sonic 
 
 #### 3. Teardown connection
 
-_Tearing down an control channel connection is done the same way as a search or ingest connection._
+If you need to teardown an ongoing connection to Sonic, use:
+
+```javascript
+// Returns: true if proceeding close, false if already closed
+sonicChannelControl.close(function(data, error) {
+  // Handle close errors here
+});
+```
 
 ## List of channel methods
 
