@@ -94,6 +94,8 @@ sonicChannelSearch.close(function(data, error) {
 });
 ```
 
+---
+
 ### 2️⃣ Ingest channel
 
 #### 1. Create the connection
@@ -157,6 +159,8 @@ sonicChannelIngest.close(function(data, error) {
   // Handle close errors here
 });
 ```
+
+---
 
 ### 3️⃣ Control channel
 
