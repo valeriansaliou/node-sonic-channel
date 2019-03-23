@@ -142,7 +142,7 @@ Use the same `sonicChannelIngest` instance to push text to the search index:
 ```javascript
 // Notice: all methods return 'true' if executed immediately, 'false' if deferred (ie. TCP socket disconnected)
 
-sonicChannelIngest.push("messages", "default", "I met Valerian Saliou yesterday. Great fun!", function(_, error) {
+sonicChannelIngest.push("messages", "default", "conversation:1", "I met Valerian Saliou yesterday. Great fun!", function(_, error) {
   // Push errors come in the 'error' argument
 });
 ```
