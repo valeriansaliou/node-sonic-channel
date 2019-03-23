@@ -29,7 +29,7 @@ Alternatively, you can run `npm install sonic-channel --save`.
 
 ## How to use?
 
-### Search channel
+### 1️⃣ Search channel
 
 #### 1. Create the connection
 
@@ -94,7 +94,7 @@ sonicChannelSearch.close(function(data, error) {
 });
 ```
 
-### Ingest channel
+### 2️⃣ Ingest channel
 
 #### 1. Create the connection
 
@@ -158,7 +158,7 @@ sonicChannelIngest.close(function(data, error) {
 });
 ```
 
-### Control channel
+### 3️⃣ Control channel
 
 #### 1. Create the connection
 
