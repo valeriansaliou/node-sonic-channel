@@ -23,7 +23,8 @@ describe("node-sonic-channel/ingest", function() {
             host                : "::1",
             port                : 1491,
             auth                : "SecretPassword",
-            offlineStackMaxSize : 0
+            offlineStackMaxSize : 0,
+            emitQueueMaxSize    : 0
           });
         },
 
@@ -94,6 +95,22 @@ describe("node-sonic-channel/ingest", function() {
           },
 
           "SonicChannelIngest should throw on invalid offlineStackMaxSize"
+        );
+      }
+    );
+
+    it("should fail creating an instance with invalid emitQueueMaxSize",
+      function() {
+        assert.throws(
+          function() {
+            new SonicChannelIngest({
+              host             : "::1",
+              port             : 1491,
+              emitQueueMaxSize : "10"
+            });
+          },
+
+          "SonicChannelIngest should throw on invalid emitQueueMaxSize"
         );
       }
     );

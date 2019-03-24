@@ -23,7 +23,8 @@ describe("node-sonic-channel/control", function() {
             host                : "::1",
             port                : 1491,
             auth                : "SecretPassword",
-            offlineStackMaxSize : 0
+            offlineStackMaxSize : 0,
+            emitQueueMaxSize    : 0
           });
         },
 
@@ -94,6 +95,22 @@ describe("node-sonic-channel/control", function() {
           },
 
           "SonicChannelControl should throw on invalid offlineStackMaxSize"
+        );
+      }
+    );
+
+    it("should fail creating an instance with invalid emitQueueMaxSize",
+      function() {
+        assert.throws(
+          function() {
+            new SonicChannelControl({
+              host             : "::1",
+              port             : 1491,
+              emitQueueMaxSize : "10"
+            });
+          },
+
+          "SonicChannelControl should throw on invalid emitQueueMaxSize"
         );
       }
     );
