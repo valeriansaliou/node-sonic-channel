@@ -220,14 +220,16 @@ sonicChannelControl.close(function(data, error) {
 
 ## List of channel methods
 
+_For details on argument values, see the [Sonic Channel Protocol specification](https://github.com/valeriansaliou/sonic/blob/master/PROTOCOL.md)._
+
 ### Search channel
 
-* `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, done_cb<function>, [options{limit<number>, offset<number>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
+* `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, done_cb<function>, [options{limit<number>, offset<number>, lang<string>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
 * `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, word_text<string>, done_cb<function>, [options{limit<number>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
 
 ### Ingest channel
 
-* `sonicChannelIngest.push(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>)` ➡️ `done_cb(_, error<object>)`
+* `sonicChannelIngest.push(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>, [options{lang<string>}<object>]?)` ➡️ `done_cb(_, error<object>)`
 * `sonicChannelIngest.pop(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.count<number>(collection_id<string>, [bucket_id<string>]?, [object_id<string>]?, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
 * `sonicChannelIngest.flushc(collection_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
