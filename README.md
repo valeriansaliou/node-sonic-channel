@@ -90,7 +90,7 @@ If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
 sonicChannelSearch.close()
-  .then(function(_) {
+  .then(function() {
     // Close success handler
   })
   .catch(function(error) {
@@ -147,7 +147,7 @@ Use the same `sonicChannelIngest` instance to push text to the search index:
 
 ```javascript
 sonicChannelIngest.push("messages", "default", "conversation:1", "I met Valerian Saliou yesterday. Great fun!")
-  .then(function(_) {
+  .then(function() {
     // Push success handler
   })
   .catch(function(error) {
@@ -161,7 +161,7 @@ If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
 sonicChannelIngest.close()
-  .then(function(_) {
+  .then(function() {
     // Close success handler
   })
   .catch(function(error) {
@@ -222,7 +222,7 @@ If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
 sonicChannelControl.close()
-  .then(function(_) {
+  .then(function() {
     // Close success handler
   })
   .catch(function(error) {
