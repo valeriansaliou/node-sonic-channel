@@ -123,9 +123,9 @@ describe("node-sonic-channel/control", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelControl.trigger("consolidate")),
-        "Trigger should be deferred"
+      assert(
+        (sonicChannelControl.trigger("consolidate") instanceof Promise),
+        "Trigger should be called"
       );
     });
   });
@@ -137,8 +137,9 @@ describe("node-sonic-channel/control", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelControl.close()), "Channel close should not be executed"
+      assert(
+        (sonicChannelControl.close() instanceof Promise),
+        "Channel close should be called"
       );
     });
   });

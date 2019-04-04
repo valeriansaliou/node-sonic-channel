@@ -24,79 +24,77 @@ var sonicChannelSearch = new SonicChannelSearch({
 
     setTimeout(function() {
       // Test query
-      var query = sonicChannelSearch.query(
+      sonicChannelSearch.query(
         "messages", "default", "valerian saliou",
-
-        function(data, error) {
-          if (error) {
-            console.error("Query #1 failed", error);
-          } else {
-            console.info("Query #1 succeeded", data);
-          }
-        },
 
         {
           limit  : 20,
           offset : 0
         }
-      );
+      )
+        .then(function(data) {
+          console.info("Query #1 succeeded", data);
+        })
+        .catch(function(error) {
+          console.error("Query #1 failed", error);
+        });
 
-      console.info("Sent: query", query);
+      console.info("Sent: query");
 
       // Test suggest
-      var suggest = sonicChannelSearch.suggest(
-        "messages", "default", "valerian",
+      sonicChannelSearch.suggest(
+        "messages", "default", "valerian"
+      )
+        .then(function(data) {
+          console.info("Suggest #1 succeeded", data);
+        })
+        .catch(function(error) {
+          console.error("Suggest #1 failed", error);
+        });
 
-        function(data, error) {
-          if (error) {
-            console.error("Suggest #1 failed", error);
-          } else {
-            console.info("Suggest #1 succeeded", data);
-          }
-        }
-      );
-
-      console.info("Sent: suggest", suggest);
+      console.info("Sent: suggest");
 
       console.info("Hold on...");
 
       setTimeout(function() {
         // Test close (#1)
-        var close1 = sonicChannelSearch.close(function(data, error) {
-          if (error) {
-            console.error("Close #1 failed", error);
-          } else {
+        sonicChannelSearch.close()
+          .then(function(data) {
             console.info("Close #1 succeeded", data);
-          }
-        });
+          })
+          .catch(function(error) {
+            console.error("Close #1 failed", error);
+          });
 
-        console.info("Sent: close#1", close1);
+        console.info("Sent: close#1");
 
         // Test close (#2)
-        var close2 = sonicChannelSearch.close(function(data, error) {
-          if (error) {
-            console.error("Close #2 failed", error);
-          } else {
+        sonicChannelSearch.close()
+          .then(function(data) {
             console.info("Close #2 succeeded", data);
-          }
-        });
+          })
+          .catch(function(error) {
+            console.error("Close #2 failed", error);
+          });
 
-        console.info("Sent: close#2", close2);
+        console.info("Sent: close#2");
 
         // Test query (after close)
-        var queryAfterClose = sonicChannelSearch.query(
-          "messages", "default", "hello",
+        sonicChannelSearch.query(
+          "messages", "default", "hello"
+        )
+          .then(function(data) {
+            console.info("Query #2 succeeded (this is not expected)", data);
 
-          function(data, error) {
-            if (error) {
-              console.error("Query #2 failed", error);
-            } else {
-              console.info("Query #2 succeeded", data);
-            }
-          }
-        );
+            process.exit(1);
+          })
+          .catch(function(error) {
+            console.error("Query #2 failed (this is expected)", error);
 
-        console.info("Sent: queryAfterClose", queryAfterClose);
+            process.exit(0);
+          });
+
+        console.info("Sent: queryAfterClose");
       }, 4000);
     }, 500);
   },
@@ -105,8 +103,6 @@ var sonicChannelSearch = new SonicChannelSearch({
     // Disconnected handler
     console.error("Sonic Channel is now disconnected (search).");
     console.info("Done running example.");
-
-    process.exit(0);
   },
 
   timeout : function() {

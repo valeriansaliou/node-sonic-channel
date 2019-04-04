@@ -123,9 +123,12 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.push("messages", "default", "a6b1z", "valerian")),
-        "Push should be deferred"
+      var push = sonicChannelIngest.push(
+        "messages", "default", "a6b1z", "valerian"
+      );
+
+      assert(
+        (push instanceof Promise), "Push should be called"
       );
     });
   });
@@ -137,9 +140,12 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.pop("messages", "default", "a6b1z", "valerian")),
-        "Pop should be deferred"
+      var pop = sonicChannelIngest.pop(
+        "messages", "default", "a6b1z", "valerian"
+      );
+
+      assert(
+        (pop instanceof Promise), "Pop should be called"
       );
     });
   });
@@ -151,9 +157,10 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.count("messages", "default", "a6b1z")),
-        "Count should be deferred"
+      var count = sonicChannelIngest.count("messages", "default", "a6b1z");
+
+      assert(
+        (count instanceof Promise), "Count should be called"
       );
     });
   });
@@ -165,9 +172,9 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.flushc("messages")),
-        "Flushc should be deferred"
+      assert(
+        (sonicChannelIngest.flushc("messages") instanceof Promise),
+        "Flushc should be called"
       );
     });
   });
@@ -179,9 +186,9 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.flushb("messages", "default")),
-        "Flushb should be deferred"
+      assert(
+        (sonicChannelIngest.flushb("messages", "default") instanceof Promise),
+        "Flushb should be called"
       );
     });
   });
@@ -193,9 +200,10 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.flusho("messages", "default", "a6b1z")),
-        "Flusho should be deferred"
+      var flusho = sonicChannelIngest.flusho("messages", "default", "a6b1z");
+
+      assert(
+        (flusho instanceof Promise), "Flusho should be called"
       );
     });
   });
@@ -207,8 +215,9 @@ describe("node-sonic-channel/ingest", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelIngest.close()), "Channel close should not be executed"
+      assert(
+        (sonicChannelIngest.close() instanceof Promise),
+        "Channel close should be called"
       );
     });
   });

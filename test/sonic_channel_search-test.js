@@ -123,9 +123,12 @@ describe("node-sonic-channel/search", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelSearch.query("messages", "default", "valerian saliou")),
-        "Query should be deferred"
+      var query = sonicChannelSearch.query(
+        "messages", "default", "valerian saliou"
+      );
+
+      assert(
+        (query instanceof Promise), "Query should be called"
       );
     });
   });
@@ -137,9 +140,12 @@ describe("node-sonic-channel/search", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelSearch.suggest("messages", "default", "valerian")),
-        "Suggest should be deferred"
+      var suggest = sonicChannelSearch.suggest(
+        "messages", "default", "valerian"
+      );
+
+      assert(
+        (suggest instanceof Promise), "Suggest should be called"
       );
     });
   });
@@ -151,8 +157,9 @@ describe("node-sonic-channel/search", function() {
         port : 1491
       });
 
-      assert.ok(
-        !(sonicChannelSearch.close()), "Channel close should not be executed"
+      assert(
+        (sonicChannelSearch.close() instanceof Promise),
+        "Channel close should be called"
       );
     });
   });

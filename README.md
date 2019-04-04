@@ -75,12 +75,13 @@ var sonicChannelSearch = new SonicChannelSearch({
 Use the same `sonicChannelSearch` instance to query the search index:
 
 ```javascript
-// Notice: all methods return 'true' if executed immediately, 'false' if deferred (ie. TCP socket disconnected)
-
-sonicChannelSearch.query("messages", "default", "valerian saliou", function(data, error) {
-  // Query results come in the 'data' argument
-  // Query errors come in the 'error' argument
-});
+sonicChannelSearch.query("messages", "default", "valerian saliou")
+  .then(function(results) {
+    // Query results come there
+  })
+  .catch(function(error) {
+    // Query errors come there
+  });
 ```
 
 #### 3. Teardown connection
@@ -88,10 +89,13 @@ sonicChannelSearch.query("messages", "default", "valerian saliou", function(data
 If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
-// Returns: true if proceeding close, false if already closed
-sonicChannelSearch.close(function(data, error) {
-  // Handle close errors here
-});
+sonicChannelSearch.close()
+  .then(function(_) {
+    // Close success handler
+  })
+  .catch(function(error) {
+    // Close errors come there
+  });
 ```
 
 ---
@@ -142,11 +146,13 @@ var sonicChannelIngest = new SonicChannelIngest({
 Use the same `sonicChannelIngest` instance to push text to the search index:
 
 ```javascript
-// Notice: all methods return 'true' if executed immediately, 'false' if deferred (ie. TCP socket disconnected)
-
-sonicChannelIngest.push("messages", "default", "conversation:1", "I met Valerian Saliou yesterday. Great fun!", function(_, error) {
-  // Push errors come in the 'error' argument
-});
+sonicChannelIngest.push("messages", "default", "conversation:1", "I met Valerian Saliou yesterday. Great fun!")
+  .then(function(_) {
+    // Push success handler
+  })
+  .catch(function(error) {
+    // Push errors come there
+  });
 ```
 
 #### 3. Teardown connection
@@ -154,10 +160,13 @@ sonicChannelIngest.push("messages", "default", "conversation:1", "I met Valerian
 If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
-// Returns: true if proceeding close, false if already closed
-sonicChannelIngest.close(function(data, error) {
-  // Handle close errors here
-});
+sonicChannelIngest.close()
+  .then(function(_) {
+    // Close success handler
+  })
+  .catch(function(error) {
+    // Close errors come there
+  });
 ```
 
 ---
@@ -212,10 +221,13 @@ _You may use the same `sonicChannelControl` instance to administrate your Sonic 
 If you need to teardown an ongoing connection to Sonic, use:
 
 ```javascript
-// Returns: true if proceeding close, false if already closed
-sonicChannelControl.close(function(data, error) {
-  // Handle close errors here
-});
+sonicChannelControl.close()
+  .then(function(_) {
+    // Close success handler
+  })
+  .catch(function(error) {
+    // Close errors come there
+  });
 ```
 
 ## List of channel methods
@@ -224,21 +236,21 @@ _For details on argument values, see the [Sonic Channel Protocol specification](
 
 ### Search channel
 
-* `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, done_cb<function>, [options{limit<number>, offset<number>, lang<string>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
-* `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, word_text<string>, done_cb<function>, [options{limit<number>}<object>]?)` ➡️ `done_cb(results<object>, error<object>)`
+* `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, [options{limit<number>, offset<number>, lang<string>}<object>]?)` ➡️ `Promise(results<object>, error<object>)`
+* `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, word_text<string>, [options{limit<number>}<object>]?)` ➡️ `Promise(results<object>, error<object>)`
 
 ### Ingest channel
 
-* `sonicChannelIngest.push(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>, [options{lang<string>}<object>]?)` ➡️ `done_cb(_, error<object>)`
-* `sonicChannelIngest.pop(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
-* `sonicChannelIngest.count<number>(collection_id<string>, [bucket_id<string>]?, [object_id<string>]?, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
-* `sonicChannelIngest.flushc(collection_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
-* `sonicChannelIngest.flushb(collection_id<string>, bucket_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
-* `sonicChannelIngest.flusho(collection_id<string>, bucket_id<string>, object_id<string>, done_cb<function>)` ➡️ `done_cb(count<number>, error<object>)`
+* `sonicChannelIngest.push(collection_id<string>, bucket_id<string>, object_id<string>, text<string>, [options{lang<string>}<object>]?)` ➡️ `Promise(_, error<object>)`
+* `sonicChannelIngest.pop(collection_id<string>, bucket_id<string>, object_id<string>, text<string>)` ➡️ `Promise(count<number>, error<object>)`
+* `sonicChannelIngest.count<number>(collection_id<string>, [bucket_id<string>]?, [object_id<string>]?)` ➡️ `Promise(count<number>, error<object>)`
+* `sonicChannelIngest.flushc(collection_id<string>)` ➡️ `Promise(count<number>, error<object>)`
+* `sonicChannelIngest.flushb(collection_id<string>, bucket_id<string>)` ➡️ `Promise(count<number>, error<object>)`
+* `sonicChannelIngest.flusho(collection_id<string>, bucket_id<string>, object_id<string>)` ➡️ `Promise(count<number>, error<object>)`
 
 ### Control channel
 
-* `sonicChannelControl.trigger(action<string>)` ➡️ `done_cb(_, error<object>)`
+* `sonicChannelControl.trigger(action<string>)` ➡️ `Promise(_, error<object>)`
 
 ## What is Sonic?
 

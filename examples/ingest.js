@@ -24,46 +24,44 @@ var sonicChannelIngest = new SonicChannelIngest({
 
     setTimeout(function() {
       // Test push
-      var push = sonicChannelIngest.push(
-        "messages", "default", "a6b1z", "valerian saliou",
+      sonicChannelIngest.push(
+        "messages", "default", "a6b1z", "valerian saliou"
+      )
+        .then(function(_) {
+          console.info("Push succeeded");
+        })
+        .catch(function(error) {
+          console.error("Push failed", error);
+        });
 
-        function(_, error) {
-          if (error) {
-            console.error("Push failed", error);
-          } else {
-            console.info("Push succeeded");
-          }
-        }
-      );
-
-      console.info("Sent: push", push);
+      console.info("Sent: push");
 
       // Test count
-      var count = sonicChannelIngest.count(
-        "messages", "default", "a6b1z",
+      sonicChannelIngest.count(
+        "messages", "default", "a6b1z"
+      )
+        .then(function(count) {
+          console.info("Count succeeded", count);
+        })
+        .catch(function(error) {
+          console.error("Count failed", error);
+        });
 
-        function(count, error) {
-          if (error) {
-            console.error("Count failed", error);
-          } else {
-            console.info("Count succeeded", count);
-          }
-        }
-      );
-
-      console.info("Sent: count", count);
+      console.info("Sent: count");
 
       console.info("Hold on...");
 
       setTimeout(function() {
         // Test close
-        var close1 = sonicChannelIngest.close(function(data, error) {
-          if (error) {
-            console.error("Close failed", error);
-          } else {
+        sonicChannelIngest.close()
+          .then(function(data) {
             console.info("Close succeeded", data);
-          }
-        });
+          })
+          .catch(function(error) {
+            console.error("Close failed", error);
+
+            process.exit(1);
+          });
       }, 4000);
     }, 500);
   },
