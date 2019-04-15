@@ -130,6 +130,20 @@ describe("node-sonic-channel/control", function() {
     });
   });
 
+  describe("info method", function() {
+    it("should defer info when offline", function() {
+      var sonicChannelControl = new SonicChannelControl({
+        host : "::1",
+        port : 1491
+      });
+
+      assert(
+        (sonicChannelControl.info() instanceof Promise),
+        "Info should be called"
+      );
+    });
+  });
+
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
       var sonicChannelControl = new SonicChannelControl({
