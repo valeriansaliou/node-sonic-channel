@@ -250,7 +250,7 @@ _For details on argument values, see the [Sonic Channel Protocol specification](
 
 ### Control channel
 
-* `sonicChannelControl.trigger(action<string>)` ➡️ `Promise(_, error<object>)`
+* `sonicChannelControl.trigger(action<string>, [data<string>]?)` ➡️ `Promise(_, error<object>)`
 * `sonicChannelControl.info()` ➡️ `Promise(results<object>, error<object>)`
 
 ## What is Sonic?
