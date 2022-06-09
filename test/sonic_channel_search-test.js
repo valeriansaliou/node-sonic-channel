@@ -114,6 +114,31 @@ describe("node-sonic-channel/search", function() {
         );
       }
     );
+
+    it(
+      (
+        "should fail creating an instance with a greater " +
+          "offlineStackMaxSize than emitQueueMaxSize"
+      ),
+
+      function() {
+        assert.throws(
+          function() {
+            new SonicChannelSearch({
+              host                : "::1",
+              port                : 1491,
+              offlineStackMaxSize : 100,
+              emitQueueMaxSize    : 10
+            });
+          },
+
+          (
+            "SonicChannelSearch should throw on offlineStackMaxSize " +
+              "greater than emitQueueMaxSize"
+          )
+        );
+      }
+    );
   });
 
   describe("query method", function() {
