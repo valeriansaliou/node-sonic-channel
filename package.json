@@ -22,7 +22,8 @@
       "url": "https://github.com/valeriansaliou/node-sonic-channel/blob/master/LICENSE"
     }
   ],
-  "main": "lib/sonic_channel",
+  "main": "./lib/sonic_channel.js",
+  "types": "./lib/sonic_channel.d.ts",
   "engines": {
     "node": ">= 6.0.0"
   },
