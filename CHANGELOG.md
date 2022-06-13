@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.2.9 (2022-06-13)
+
+### Changes
+
+* Declare TypeScript definitions in `package.json` [[@anbraten](https://github.com/anbraten)].
+
 ## 1.2.8 (2022-06-10)
 
 ### Bug Fixes
