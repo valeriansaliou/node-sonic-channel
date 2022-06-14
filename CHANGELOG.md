@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.2.10 (2022-06-14)
+
+### Bug Fixes
+
+* Harden reconnection flow by making sure that all registered timeouts and intervals are bailed out [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.9 (2022-06-13)
 
 ### Changes
