@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.2.11 (2022-06-16)
+
+### Changes
+
+* Add the ability to disable emit queue and offline stack by setting their options to zero [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.10 (2022-06-14)
 
 ### Bug Fixes
