@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.2.12 (2022-06-16)
+
+### Changes
+
+* Improve performance when the Sonic Channel client is disconnected, by throwing string objects intead of stack-capturing errors [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.11 (2022-06-16)
 
 ### Changes
