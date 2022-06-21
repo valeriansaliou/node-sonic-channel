@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.2.14 (2022-06-21)
+
+### Changes
+
+* Process wire protocol lines as soon as they are received on the buffer, this avoids deferring the processing of responses until we reach a line feed character [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.13 (2022-06-21)
 
 ### Changes
