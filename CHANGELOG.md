@@ -1,6 +1,15 @@
 Changelog
 =========
 
+## 1.2.13 (2022-06-21)
+
+### Changes
+
+* Remove performance-killer try/catch block [[@valeriansaliou](https://github.com/valeriansaliou)].
+* Improve the performance and traceability of connection event handlers [[@valeriansaliou](https://github.com/valeriansaliou)].
+* Improve the performance of data buffer splitter, by skipping pre-trimming [[@valeriansaliou](https://github.com/valeriansaliou)].
+* Improve the performance of the wire protocol handler, by moving away from regex-based parsing [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.12 (2022-06-16)
 
 ### Changes
