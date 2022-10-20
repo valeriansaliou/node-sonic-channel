@@ -175,6 +175,23 @@ describe("node-sonic-channel/search", function() {
     });
   });
 
+  describe("list method", function() {
+    it("should defer list when offline", function() {
+      var sonicChannelSearch = new SonicChannelSearch({
+        host : "::1",
+        port : 1491
+      });
+
+      var list = sonicChannelSearch.list(
+        "messages", "default"
+      );
+
+      assert(
+        (list instanceof Promise), "List should be called"
+      );
+    });
+  });
+
   describe("close method", function() {
     it("should not close twice already closed channel", function() {
       var sonicChannelSearch = new SonicChannelSearch({

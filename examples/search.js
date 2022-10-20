@@ -54,6 +54,19 @@ var sonicChannelSearch = new SonicChannelSearch({
 
       console.info("Sent: suggest");
 
+      // Test list
+      sonicChannelSearch.list(
+        "messages", "default"
+      )
+        .then(function(data) {
+          console.info("List #1 succeeded", data);
+        })
+        .catch(function(error) {
+          console.error("List #1 failed", error);
+        });
+
+      console.info("Sent: list");
+
       console.info("Hold on...");
 
       setTimeout(function() {

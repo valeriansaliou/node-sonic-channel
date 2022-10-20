@@ -238,6 +238,7 @@ _For details on argument values, see the [Sonic Channel Protocol specification](
 
 * `sonicChannelSearch.query(collection_id<string>, bucket_id<string>, terms_text<string>, [options{limit<number>, offset<number>, lang<string>}<object>]?)` ➡️ `Promise(results<object>, error<object>)`
 * `sonicChannelSearch.suggest(collection_id<string>, bucket_id<string>, word_text<string>, [options{limit<number>}<object>]?)` ➡️ `Promise(results<object>, error<object>)`
+* `sonicChannelSearch.list(collection_id<string>, bucket_id<string>, [options{limit<number>, offset<number>}<object>]?)` ➡️ `Promise(results<object>, error<object>)`
 
 ### Ingest channel
 

@@ -35,6 +35,11 @@ export declare interface SuggestOptions {
   limit?: number
 }
 
+export declare interface ListOptions {
+  limit?: number
+  offset?: number
+}
+
 export declare interface PushOptions {
   lang?: string
 }
@@ -42,6 +47,7 @@ export declare interface PushOptions {
 export declare class Search extends Generic {
   query(collection: string, bucket: string, terms: string, options?: QueryOptions): Promise<string[]>
   suggest(collection: string, bucket: string, word: string, options?: SuggestOptions): Promise<string[]>
+  list(collection: string, bucket: string, options?: ListOptions): Promise<string[]>
 }
 
 export declare class Ingest extends Generic {
