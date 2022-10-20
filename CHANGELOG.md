@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.3.0 (2022-10-20)
+
+### Changes
+
+* Add the `LIST` search channel command [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.2.14 (2022-06-21)
 
 ### Changes
