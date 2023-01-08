@@ -1,6 +1,6 @@
 # node-sonic-channel
 
-[![Test and Build](https://github.com/valeriansaliou/node-sonic-channel/workflows/Test%20and%20Build/badge.svg?branch=master)](https://github.com/valeriansaliou/node-sonic-channel/actions?query=workflow%3A%22Test+and+Build%22) [![NPM](https://img.shields.io/npm/v/sonic-channel.svg)](https://www.npmjs.com/package/sonic-channel) [![Downloads](https://img.shields.io/npm/dt/sonic-channel.svg)](https://www.npmjs.com/package/sonic-channel) [![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/valeriansaliou)
+[![Test and Build](https://github.com/valeriansaliou/node-sonic-channel/workflows/Test%20and%20Build/badge.svg?branch=master)](https://github.com/valeriansaliou/node-sonic-channel/actions?query=workflow%3A%22Test+and+Build%22) [![Build and Release](https://github.com/valeriansaliou/node-sonic-channel/workflows/Build%20and%20Release/badge.svg)](https://github.com/valeriansaliou/node-sonic-channel/actions?query=workflow%3A%22Build+and+Release%22) [![NPM](https://img.shields.io/npm/v/sonic-channel.svg)](https://www.npmjs.com/package/sonic-channel) [![Downloads](https://img.shields.io/npm/dt/sonic-channel.svg)](https://www.npmjs.com/package/sonic-channel) [![Buy Me A Coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-yellow.svg)](https://www.buymeacoffee.com/valeriansaliou)
 
 **Sonic Channel integration for Node. Used in pair with Sonic, the fast, lightweight and schema-less search backend.**
 
