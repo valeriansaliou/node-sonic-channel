@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## 1.3.1 (2023-01-09)
+
+### New Features
+
+* Automate the package release process via GitHub Actions (ie. `npm publish`) [[@valeriansaliou](https://github.com/valeriansaliou)].
+
 ## 1.3.0 (2022-10-20)
 
 ### Changes
